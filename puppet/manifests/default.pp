@@ -319,6 +319,11 @@ if $php_values == undef {
 
 if $mysql_values['root_password'] {
   class { 'mysql::server':
+    override_options => {
+      'mysqld' => {
+        'bind_address' => $mysql_values['bind_address'],
+      }
+    },
     root_password => $mysql_values['root_password'],
   }
 
