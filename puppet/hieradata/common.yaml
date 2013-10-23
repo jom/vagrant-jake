@@ -31,6 +31,7 @@ vagrantfile-local:
                 source: /Users/jacob/Projects
                 target: /var/www
                 nfs: 'false'
+                owner: "www-data", group: "www-data"
         usable_port_range: 2200..2250
     ssh:
         host: null
