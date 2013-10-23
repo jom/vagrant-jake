@@ -97,14 +97,4 @@ xdebug:
 mysql:
     root_password: root
     phpmyadmin: 0
-    bind_address: '192.168.50.100'
-    databases:
-        92H5wZ4yu8km:
-            grant:
-                - ALL
-            name: 'jacob'
-            host: '%'
-            user: 'jacob'
-            password: 'jacob'
-            sql_file: ''
-
+    bind_address: '127.0.0.1'
