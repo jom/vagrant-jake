@@ -1,0 +1,109 @@
+---
+vagrantfile-local:
+    vm:
+        box: wheezy64
+        box_url: 'http://puppet-vagrant-boxes.puppetlabs.com/debian-70rc1-x64-vbox4210.box'
+        hostname: null
+        network:
+            private_network: ''
+            forwarded_port:
+                feq76QXlUViH:
+                    host: ''
+                    guest: ''
+        provider:
+            virtualbox:
+                modifyvm:
+                    name: dev
+                    natdnshostresolver1: on
+                    memory: '1024'
+                setextradata:
+                    VBoxInternal2/SharedFoldersEnableSymlinksCreate/v-root: 1
+        provision:
+            puppet:
+                manifests_path: puppet/manifests
+                options:
+                    - --verbose
+                    - '--hiera_config /vagrant/hiera.yaml'
+                    - '--parser future'
+        synced_folder:
+            YwlCllivKBsz:
+                id: vagrant-root
+                source: /Users/jacob/Projects
+                target: /var/www
+                nfs: 'false'
+        usable_port_range: 2200..2250
+    ssh:
+        host: null
+        port: null
+        private_key_path: null
+        username: vagrant
+        guest_port: null
+        keep_alive: true
+        forward_agent: false
+        forward_x11: false
+        shell: 'bash -l'
+    vagrant:
+        host: ':detect'
+server:
+    packages:
+        - build-essential
+        - vim
+        - curl
+        - git-core
+        - bind9
+    dot_files:
+        -
+            bash_aliases: null
+nginx:
+    vhosts:
+        Mbhjeozxeae0:
+            server_name: '~^(?<name>[^\.]*)\.jake\.(?<tld>[^\.]*)$'
+            www_root: '/var/www/$name/web'
+            listen_port: '80'
+            access_log: '/var/log/nginx/access.log'
+            error_log: '/var/log/nginx/puppet.log'
+            index_files:
+                - index.php
+            envvars:
+                - 'APP_ENV dev'
+php:
+    version: '55'
+    composer: '1'
+    modules:
+        php:
+            - cli
+            - curl
+            - intl
+            - mcrypt
+            - gd
+            - ldap
+            - tidy
+        pear: {  }
+        pecl:
+            - pecl_http
+    ini:
+        display_errors: On
+        error_reporting: '-1'
+    timezone: America/Los_Angeles
+xdebug:
+    install: '1'
+    settings:
+        xdebug.default_enable: '1'
+        xdebug.remote_autostart: '0'
+        xdebug.remote_connect_back: '1'
+        xdebug.remote_enable: '1'
+        xdebug.remote_handler: dbgp
+        xdebug.remote_port: '9000'
+mysql:
+    root_password: root
+    phpmyadmin: 0
+    databases:
+        92H5wZ4yu8km:
+            grant:
+                - ALL
+            name: 'jacob'
+            host: localhost
+            user: 'jacob'
+            password: 'jacob'
+            sql_file: ''
+
