@@ -11,6 +11,7 @@ Vagrant.configure("2") do |config|
     virtualbox.customize ["modifyvm", :id, "--name", "dev"]
     virtualbox.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
     virtualbox.customize ["modifyvm", :id, "--memory", "1024"]
+    virtualbox.customize ["modifyvm", :id, "--cpus", "2"]
     virtualbox.customize ["setextradata", :id, "--VBoxInternal2/SharedFoldersEnableSymlinksCreate/v-root", "1"]
   end
 
