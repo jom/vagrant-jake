@@ -149,6 +149,9 @@ define nginx_vhost (
     index_files => $index_files,
     error_log => $error_log,
     access_log => $access_log,
+    vhost_cfg_append => {
+      'sendfile' => 'off',
+    },
     try_files   => ['$uri', '$uri/', "/${try_files}?\$args"],
   }
 
