@@ -3,7 +3,7 @@ Vagrant.configure("2") do |config|
   config.vm.box_url = "https://puphpet.s3.amazonaws.com/debian-wheezy72-x64-vbox43.box"
 
   config.vm.network "private_network", ip: "192.168.50.100"
-  config.vm.forward_port 9000,9000
+  config.vm.network "forwarded_port", guest: 9000, host: 9000
   config.vm.synced_folder "/Users/jacob/Projects", "/var/www", id: "vagrant-root", owner: "www-data", group: "www-data", :nfs => false
 
   config.vm.usable_port_range = (2200..2250)

@@ -52,6 +52,7 @@ server:
         - git-core
         - bind9
         - redis-server
+        - graphviz
     dot_files:
         -
             bash_aliases: null
@@ -96,8 +97,9 @@ xdebug:
         xdebug.remote_enable: '1'
         xdebug.remote_handler: dbgp
         xdebug.remote_port: '9000'
+        xdebug.profiler_enable: '0'
         xdebug.profiler_enable_trigger: '1'
-        xdebug.profiler_output_dir: '/tmp/profiles'
+        xdebug.profiler_output_dir: '/var/tmp/profiles'
 mysql:
     root_password: root
     phpmyadmin: 0

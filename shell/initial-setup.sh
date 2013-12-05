@@ -9,10 +9,10 @@ if [[ ! -d /.puphpet-stuff ]]; then
     echo "Created directory /.puphpet-stuff"
 fi
 
-if [[ ! -d /tmp/profiles ]]; then
-    mkdir /tmp/profiles
-    chmod 0777 /tmp/profiles
-    echo "Created directory /tmp/profiles"
+if [[ ! -d /var/tmp/profiles ]]; then
+    mkdir /var/tmp/profiles
+    chmod 0777 /var/tmp/profiles
+    echo "Created directory /var/tmp/profiles"
 fi
 
 if [[ ! -f /.puphpet-stuff/initial-setup-repo-update ]]; then
