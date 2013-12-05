@@ -9,6 +9,12 @@ if [[ ! -d /.puphpet-stuff ]]; then
     echo "Created directory /.puphpet-stuff"
 fi
 
+if [[ ! -d /tmp/profiles ]]; then
+    mkdir /tmp/profiles
+    chmod 0777 /tmp/profiles
+    echo "Created directory /tmp/profiles"
+fi
+
 if [[ ! -f /.puphpet-stuff/initial-setup-repo-update ]]; then
     if [ "$OS" == 'debian' ] || [ "$OS" == 'ubuntu' ]; then
         echo "Running initial-setup apt-get update"
