@@ -26,7 +26,7 @@ Vagrant.configure("2") do |config|
     if folder['source'] != '' && folder['target'] != '' && folder['id'] != ''
       nfs = (folder['nfs'] == "true") ? "nfs" : nil
       config.vm.synced_folder "#{folder['source']}", "#{folder['target']}", id: "#{folder['id']}", type: nfs
-      config.bindfs.bind_folder "#{folder['target']}", "#{folder['bindfs']['target']}", :owner => "#{folder['bindfs']['owner']}", :group => "#{folder['bindfs']['group']}"
+      config.bindfs.bind_folder "#{folder['target']}", "#{folder['bindfs']['target']}", :owner => "#{folder['bindfs']['owner']}", :group => "#{folder['bindfs']['group']}", :'chmod-normal' => true, :'chmod-allow-x' => true
     end
   end
 
