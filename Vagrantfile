@@ -4,7 +4,8 @@ Vagrant.configure("2") do |config|
 
   config.vm.network "private_network", ip: "192.168.50.100"
   config.vm.network "forwarded_port", guest: 9000, host: 9000
-  config.vm.synced_folder "/Users/jacob/Projects", "/var/www", id: "vagrant-root", owner: "www-data", group: "www-data", :nfs => false
+  config.vm.synced_folder "/Users/jacob/Projects", "/vagrant-sync", id: "vagrant-root", type: "nfs"
+  config.bindfs.bind_folder "/vagrant-sync", "/var/www", :owner => "www-data", :group => "www-data"
 
   config.vm.usable_port_range = (2200..2250)
   config.vm.provider :virtualbox do |virtualbox|
@@ -27,7 +28,7 @@ Vagrant.configure("2") do |config|
     puppet.options = ["--verbose", "--hiera_config /vagrant/hiera.yaml", "--parser future"]
   end
 
-  config.dns.tld = "dev"
+  # config.dns.tld = "dev"
   config.vm.hostname = "jake"
 
   config.ssh.username = "vagrant"
@@ -38,5 +39,7 @@ Vagrant.configure("2") do |config|
   config.ssh.forward_agent = false
   config.ssh.forward_x11 = false
   config.vagrant.host = :detect
+  
+  VagrantDNS::Config.auto_run = false
 end
 
