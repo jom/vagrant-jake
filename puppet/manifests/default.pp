@@ -241,12 +241,23 @@ if count($php_values['modules']['pecl']) > 0 {
   php_pecl_mod { $php_values['modules']['pecl']:; }
 }
 if count($php_values['ini']) > 0 {
-  $php_values['ini'].each { |$key, $value|
-    puphpet::ini { $key:
-      entry       => "CUSTOM/${key}",
-      value       => $value,
-      php_version => $php_values['version'],
-      webserver   => $php_webserver_service
+  each( $php_values['ini'] ) |$key, $value| {
+    if is_array($value) {
+      each( $php_values['ini'][$key] ) |$innerkey, $innervalue| {
+        puphpet::ini { "${key}_${innerkey}":
+          entry       => "CUSTOM_${innerkey}/${key}",
+          value       => $innervalue,
+          php_version => $php_values['version'],
+          webserver   => $php_webserver_service
+        }
+      }
+    } else {
+      puphpet::ini { $key:
+        entry       => "CUSTOM/${key}",
+        value       => $value,
+        php_version => $php_values['version'],
+        webserver   => $php_webserver_service
+      }
     }
   }
 }
