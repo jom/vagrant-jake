@@ -28,7 +28,7 @@ Vagrant.configure("2") do |config|
     puppet.options = ["--verbose", "--hiera_config /vagrant/hiera.yaml", "--parser future"]
   end
 
-  # config.dns.tld = "dev"
+  config.dns.tld = "dev"
   config.vm.hostname = "jake"
 
   config.ssh.username = "vagrant"
@@ -39,7 +39,7 @@ Vagrant.configure("2") do |config|
   config.ssh.forward_agent = false
   config.ssh.forward_x11 = false
   config.vagrant.host = :detect
-  
+
   VagrantDNS::Config.auto_run = false
 end
 
