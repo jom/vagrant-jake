@@ -71,6 +71,14 @@ nginx:
                 - index.php
             envvars:
                 - 'APP_ENV dev'
+        Afjksfj3faSDFe:
+            server_name: progress.dev
+            www_root: /var/www/progress/web
+            listen_port: '80'
+            index_files:
+                - index.php
+            envvars:
+                - 'APP_ENV dev'
 php:
     version: '55'
     composer: '1'
