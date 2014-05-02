@@ -57,6 +57,7 @@ server:
         - bind9
         - redis-server
         - graphviz
+        - php5-gmp
     dot_files:
         -
             bash_aliases: null
@@ -91,6 +92,7 @@ php:
             - ldap
             - mcrypt
             - tidy
+            - gmp
         pear: {  }
         pecl:
             - pecl_http
