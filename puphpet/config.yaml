@@ -57,6 +57,7 @@ server:
         - bind9
         - redis-server
         - graphviz
+        - subversion
         - php5-gmp
     dot_files:
         -
