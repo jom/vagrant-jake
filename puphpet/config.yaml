@@ -14,7 +14,7 @@ vagrantfile-local:
             virtualbox:
                 modifyvm:
                     natdnshostresolver1: on
-                    memory: '1024'
+                    memory: '4024'
                 setextradata:
                     VBoxInternal2/SharedFoldersEnableSymlinksCreate/v-root: 1
         provision:
@@ -111,7 +111,9 @@ xdebug:
         xdebug.remote_connect_back: '1'
         xdebug.remote_enable: '1'
         xdebug.remote_handler: dbgp
+        xdebug.remote_host: '192.168.56.1'
         xdebug.remote_port: '9000'
+        xdebug.remote_autostart: '1'
         xdebug.profiler_enable: '0'
         xdebug.profiler_enable_trigger: '1'
         xdebug.profiler_output_dir: /var/tmp/profiles
