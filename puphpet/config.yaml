@@ -4,7 +4,7 @@ vagrantfile-local:
         box: puphpet/ubuntu1404-x64
         box_url: puphpet/ubuntu1404-x64
         hostname: jake
-        memory: '512'
+        memory: '4024'
         cpus: '1'
         chosen_provider: virtualbox
         network:
@@ -192,6 +192,7 @@ mariadb:
     install: '1'
     root_password: root
     adminer: 0
+    bind_address: '127.0.0.1'
     databases:
         7RxInxM64pEc:
             grant:
