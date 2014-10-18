@@ -10,7 +10,7 @@ vagrantfile-local:
         network:
             private_network: 192.168.56.101
             forwarded_port:
-                6xhDWcj8bNnI:
+                WCHI5TCK6o0s:
                     host: '8784'
                     guest: '22'
         post_up_message: ''
@@ -32,7 +32,7 @@ vagrantfile-local:
                     - '--hiera_config /vagrant/puphpet/puppet/hiera.yaml'
                     - '--parser future'
         synced_folder:
-            bpBwo8eGsAya:
+            XFfFpLfIeADf:
                 source: /Users/jacob/Projects
                 target: /var/www
                 sync_type: default
@@ -87,7 +87,7 @@ nginx:
         proxy_buffer_size: 128k
         proxy_buffers: '4 256k'
     vhosts:
-        fs89YbPmrXUZ:
+        KlrCjDgIzIwF:
             server_name: cascade.dev
             www_root: /var/www/cascade/web
             listen_port: '80'
@@ -96,10 +96,10 @@ nginx:
                 - index.php
             envvars:
                 - 'APP_ENV dev'
-            engine: ''
+            engine: php
             ssl_cert: ''
             ssl_key: ''
-        r0IxyDlvagh9:
+        yberKwMOUqYB:
             server_name: progress.dev
             www_root: /var/www/progress/web
             listen_port: '80'
@@ -108,7 +108,7 @@ nginx:
                 - index.php
             envvars:
                 - 'APP_ENV dev'
-            engine: ''
+            engine: php
             ssl_cert: ''
             ssl_key: ''
 php:
@@ -192,9 +192,8 @@ mariadb:
     install: '1'
     root_password: root
     adminer: 0
-    bind_address: '127.0.0.1'
     databases:
-        7RxInxM64pEc:
+        k50reMlzymwZ:
             grant:
                 - ALL
             name: cascade
@@ -202,7 +201,7 @@ mariadb:
             user: cascade
             password: cascade
             sql_file: ''
-        h03qF1rIkr91:
+        bdfjklWzx7HP:
             grant:
                 - ALL
             name: marina
@@ -255,4 +254,3 @@ elastic_search:
     settings:
         java_install: true
         autoupgrade: true
-
