@@ -3,15 +3,15 @@ vagrantfile-local:
     vm:
         box: puphpet/ubuntu1404-x64
         box_url: puphpet/ubuntu1404-x64
-        hostname: jake
-        memory: '4024'
+        hostname: ''
+        memory: '2024'
         cpus: '1'
         chosen_provider: virtualbox
         network:
             private_network: 192.168.56.101
             forwarded_port:
-                ogMPhUDmBf0C:
-                    host: '8784'
+                RMWgvxxDgRr0:
+                    host: '5049'
                     guest: '22'
         post_up_message: ''
         provider:
@@ -32,11 +32,17 @@ vagrantfile-local:
                     - '--hiera_config /vagrant/puphpet/puppet/hiera.yaml'
                     - '--parser future'
         synced_folder:
-            2XmlSHMd8s5w:
+            iiq8Nx43oURc:
                 source: /Users/jacob/Projects
                 target: /var/www
                 sync_type: default
                 rsync:
+                    args:
+                        - '--verbose'
+                        - '--archive'
+                        - '-z'
+                    exclude:
+                        - .vagrant/
                     auto: 'false'
         usable_port_range:
             start: 10200
@@ -56,20 +62,16 @@ vagrantfile-local:
 server:
     install: '1'
     packages:
-        - build-essential
         - vim
-        - curl
         - git-core
-        - bind9
-        - redis-server
+        - curl
         - graphviz
         - subversion
-        - php5-gmp
 firewall:
     install: '1'
     rules: null
 apache:
-    install: '0'
+    install: 0
     settings:
         user: www-data
         group: www-data
@@ -77,8 +79,29 @@ apache:
         manage_user: false
         manage_group: false
         sendfile: 0
-    modules: {  }
-    vhosts: {  }
+    modules:
+        - rewrite
+    vhosts:
+        JYuviXzLZZwm:
+            servername: awesome.dev
+            serveraliases:
+                - www.awesome.dev
+            docroot: /var/www/awesome
+            port: '80'
+            setenv:
+                - 'APP_ENV dev'
+            override:
+                - All
+            options:
+                - Indexes
+                - FollowSymLinks
+                - MultiViews
+            engine: php
+            custom_fragment: ''
+            ssl_cert: ''
+            ssl_key: ''
+            ssl_chain: ''
+            ssl_certs_dir: ''
     mod_pagespeed: 0
 nginx:
     install: '1'
@@ -87,27 +110,29 @@ nginx:
         proxy_buffer_size: 128k
         proxy_buffers: '4 256k'
     vhosts:
-        o81rgLf7qnEq:
+        NlMSmW729GU3:
             server_name: cascade.dev
             www_root: /var/www/cascade/web
             listen_port: '80'
-            location: .php$
+            location: \.php$
             index_files:
+                - index.html
+                - index.htm
                 - index.php
             envvars:
                 - 'APP_ENV dev'
             engine: php
             ssl_cert: ''
             ssl_key: ''
-        t4RrTrl3dy8U:
+        N8RzfPNBLngn:
             server_name: progress.dev
             www_root: /var/www/progress/web
             listen_port: '80'
-            location: .php$
+            location: \.php$
             index_files:
+                - index.html
+                - index.htm
                 - index.php
-            envvars:
-                - 'APP_ENV dev'
             engine: php
             ssl_cert: ''
             ssl_key: ''
@@ -119,21 +144,24 @@ php:
     modules:
         php:
             - cli
+            - intl
+            - mcrypt
             - curl
             - gd
             - gmp
-            - intl
             - ldap
-            - mcrypt
             - tidy
+            - sqlite
+            - mbstring
         pear: {  }
         pecl:
             - pecl_http
+            - mongo
+            - redis
     ini:
         display_errors: On
         error_reporting: '-1'
         session.save_path: /var/lib/php/session
-        error_log: /var/www/php_errors.log
     timezone: America/Los_Angeles
     mod_php: 0
 hhvm:
@@ -142,44 +170,46 @@ hhvm:
     composer: '1'
     composer_home: ''
     settings:
-        host: '0'
-        port: '0'
-    ini: {  }
+        host: 127.0.0.1
+        port: '9000'
+    ini:
+        display_errors: On
+        error_reporting: '-1'
     timezone: null
 xdebug:
     install: '1'
     settings:
         xdebug.default_enable: '1'
-        xdebug.remote_autostart: '1'
+        xdebug.remote_autostart: '0'
         xdebug.remote_connect_back: '1'
         xdebug.remote_enable: '1'
         xdebug.remote_handler: dbgp
-        xdebug.remote_host: 192.168.56.1
-        xdebug.remote_port: '9001'
-        xdebug.profiler_enable: '0'
-        xdebug.profiler_enable_trigger: '1'
-        xdebug.profiler_output_dir: /var/www/profiles
+        xdebug.remote_port: '9000'
 xhprof:
-    install: '1'
+    install: '0'
 drush:
     install: '0'
-    version: ''
+    version: 6.3.0
 ruby:
     install: '1'
-    versions: {  }
+    versions:
+        yOrY732m4Rfg:
+            version: ''
 nodejs:
     install: '0'
     npm_packages: {  }
 python:
     install: '1'
     packages: {  }
-    versions: {  }
+    versions:
+        Uk5swXzYDiol:
+            version: ''
 mysql:
     install: '1'
     root_password: root
     adminer: 0
     databases:
-        eIXuIOfpcPlL:
+        pmQIKxUDwSrv:
             grant:
                 - ALL
             name: cascade
@@ -187,15 +217,15 @@ mysql:
             user: cascade
             password: cascade
             sql_file: ''
-        3f4VznVspGOq:
+        rQjDsUhEGATU:
             grant:
                 - ALL
             name: progress
             host: localhost
             user: progress
-            password: porgress
+            password: progress
             sql_file: ''
-        rnHy3gLmH1es:
+        wOdNh7NjsLsL:
             grant:
                 - ALL
             name: marina
@@ -214,7 +244,7 @@ postgresql:
     adminer: 0
 mariadb:
     install: '0'
-    root_password: root
+    root_password: '123'
     adminer: 0
     databases: {  }
     version: '10.0'
@@ -223,7 +253,7 @@ sqlite:
     adminer: 0
     databases: {  }
 mongodb:
-    install: '0'
+    install: '1'
     settings:
         auth: 1
         port: '27017'
