@@ -10,7 +10,7 @@ vagrantfile-local:
         network:
             private_network: 192.168.56.101
             forwarded_port:
-                WCHI5TCK6o0s:
+                ogMPhUDmBf0C:
                     host: '8784'
                     guest: '22'
         post_up_message: ''
@@ -32,7 +32,7 @@ vagrantfile-local:
                     - '--hiera_config /vagrant/puphpet/puppet/hiera.yaml'
                     - '--parser future'
         synced_folder:
-            XFfFpLfIeADf:
+            2XmlSHMd8s5w:
                 source: /Users/jacob/Projects
                 target: /var/www
                 sync_type: default
@@ -87,7 +87,7 @@ nginx:
         proxy_buffer_size: 128k
         proxy_buffers: '4 256k'
     vhosts:
-        KlrCjDgIzIwF:
+        o81rgLf7qnEq:
             server_name: cascade.dev
             www_root: /var/www/cascade/web
             listen_port: '80'
@@ -99,7 +99,7 @@ nginx:
             engine: php
             ssl_cert: ''
             ssl_key: ''
-        yberKwMOUqYB:
+        t4RrTrl3dy8U:
             server_name: progress.dev
             www_root: /var/www/progress/web
             listen_port: '80'
@@ -175,10 +175,34 @@ python:
     packages: {  }
     versions: {  }
 mysql:
-    install: '0'
+    install: '1'
     root_password: root
     adminer: 0
-    databases: {  }
+    databases:
+        eIXuIOfpcPlL:
+            grant:
+                - ALL
+            name: cascade
+            host: localhost
+            user: cascade
+            password: cascade
+            sql_file: ''
+        3f4VznVspGOq:
+            grant:
+                - ALL
+            name: progress
+            host: localhost
+            user: progress
+            password: porgress
+            sql_file: ''
+        rnHy3gLmH1es:
+            grant:
+                - ALL
+            name: marina
+            host: localhost
+            user: marina
+            password: marina
+            sql_file: ''
 postgresql:
     install: '0'
     settings:
@@ -189,26 +213,10 @@ postgresql:
     databases: {  }
     adminer: 0
 mariadb:
-    install: '1'
+    install: '0'
     root_password: root
     adminer: 0
-    databases:
-        k50reMlzymwZ:
-            grant:
-                - ALL
-            name: cascade
-            host: localhost
-            user: cascade
-            password: cascade
-            sql_file: ''
-        bdfjklWzx7HP:
-            grant:
-                - ALL
-            name: marina
-            host: localhost
-            user: cascade
-            password: cascade
-            sql_file: ''
+    databases: {  }
     version: '10.0'
 sqlite:
     install: '0'
@@ -254,3 +262,4 @@ elastic_search:
     settings:
         java_install: true
         autoupgrade: true
+
