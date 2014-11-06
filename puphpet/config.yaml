@@ -1,8 +1,8 @@
 ---
 vagrantfile-local:
     vm:
-        box: puphpet/ubuntu1404-x64
-        box_url: puphpet/ubuntu1404-x64
+        box: puphpet/centos65-x64
+        box_url: puphpet/centos65-x64
         hostname: ''
         memory: '2024'
         cpus: '1'
@@ -10,7 +10,7 @@ vagrantfile-local:
         network:
             private_network: 192.168.56.101
             forwarded_port:
-                RMWgvxxDgRr0:
+                Fy3WLhl0ku3O:
                     host: '5049'
                     guest: '22'
         post_up_message: ''
@@ -32,10 +32,10 @@ vagrantfile-local:
                     - '--hiera_config /vagrant/puphpet/puppet/hiera.yaml'
                     - '--parser future'
         synced_folder:
-            iiq8Nx43oURc:
+            pSGzHw5cpzed:
                 source: /Users/jacob/Projects
                 target: /var/www
-                sync_type: default
+                sync_type: nfs
                 rsync:
                     args:
                         - '--verbose'
@@ -62,16 +62,14 @@ vagrantfile-local:
 server:
     install: '1'
     packages:
-        - vim
-        - git-core
-        - curl
-        - graphviz
-        - subversion
+        - vim-common
+        - htop
+        - git
 firewall:
     install: '1'
     rules: null
 apache:
-    install: 0
+    install: '0'
     settings:
         user: www-data
         group: www-data
@@ -82,7 +80,7 @@ apache:
     modules:
         - rewrite
     vhosts:
-        JYuviXzLZZwm:
+        kAeEeu2iaqxf:
             servername: awesome.dev
             serveraliases:
                 - www.awesome.dev
@@ -110,7 +108,7 @@ nginx:
         proxy_buffer_size: 128k
         proxy_buffers: '4 256k'
     vhosts:
-        NlMSmW729GU3:
+        mDDtdjErfZTw:
             server_name: cascade.dev
             www_root: /var/www/cascade/web
             listen_port: '80'
@@ -124,7 +122,7 @@ nginx:
             engine: php
             ssl_cert: ''
             ssl_key: ''
-        N8RzfPNBLngn:
+        Lk0BRwGIvW9X:
             server_name: progress.dev
             www_root: /var/www/progress/web
             listen_port: '80'
@@ -144,20 +142,18 @@ php:
     modules:
         php:
             - cli
-            - intl
-            - mcrypt
-            - curl
             - gd
             - gmp
+            - intl
             - ldap
-            - tidy
-            - sqlite
             - mbstring
+            - mcrypt
+            - tidy
         pear: {  }
         pecl:
-            - pecl_http
             - mongo
             - redis
+            - pecl_http
     ini:
         display_errors: On
         error_reporting: '-1'
@@ -193,7 +189,7 @@ drush:
 ruby:
     install: '1'
     versions:
-        yOrY732m4Rfg:
+        Y5A3Ij8yLZhR:
             version: ''
 nodejs:
     install: '0'
@@ -202,14 +198,14 @@ python:
     install: '1'
     packages: {  }
     versions:
-        Uk5swXzYDiol:
+        XFbvF6c1R715:
             version: ''
 mysql:
     install: '1'
     root_password: root
     adminer: 0
     databases:
-        pmQIKxUDwSrv:
+        5NM0vLk5Tvkj:
             grant:
                 - ALL
             name: cascade
@@ -217,7 +213,7 @@ mysql:
             user: cascade
             password: cascade
             sql_file: ''
-        rQjDsUhEGATU:
+        7hOH2Fgcbyuk:
             grant:
                 - ALL
             name: progress
@@ -225,7 +221,7 @@ mysql:
             user: progress
             password: progress
             sql_file: ''
-        wOdNh7NjsLsL:
+        8mi8FcmZGw4u:
             grant:
                 - ALL
             name: marina
@@ -251,7 +247,13 @@ mariadb:
 sqlite:
     install: '0'
     adminer: 0
-    databases: {  }
+    databases:
+        HsTIohEU89VZ:
+            name: ''
+            owner: vagrant
+            group: ''
+            mode: '755'
+            sql_file: ''
 mongodb:
     install: '1'
     settings:
