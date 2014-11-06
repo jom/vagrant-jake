@@ -10,7 +10,7 @@ vagrantfile-local:
         network:
             private_network: 192.168.56.101
             forwarded_port:
-                Fy3WLhl0ku3O:
+                gA75BZzwkKES:
                     host: '5049'
                     guest: '22'
         post_up_message: ''
@@ -32,7 +32,7 @@ vagrantfile-local:
                     - '--hiera_config /vagrant/puphpet/puppet/hiera.yaml'
                     - '--parser future'
         synced_folder:
-            pSGzHw5cpzed:
+            ELi1QbCA4Nky:
                 source: /Users/jacob/Projects
                 target: /var/www
                 sync_type: nfs
@@ -80,7 +80,7 @@ apache:
     modules:
         - rewrite
     vhosts:
-        kAeEeu2iaqxf:
+        Axe3PgKFTLxw:
             servername: awesome.dev
             serveraliases:
                 - www.awesome.dev
@@ -108,7 +108,7 @@ nginx:
         proxy_buffer_size: 128k
         proxy_buffers: '4 256k'
     vhosts:
-        mDDtdjErfZTw:
+        tIelkDXWTEaD:
             server_name: cascade.dev
             www_root: /var/www/cascade/web
             listen_port: '80'
@@ -122,7 +122,7 @@ nginx:
             engine: php
             ssl_cert: ''
             ssl_key: ''
-        Lk0BRwGIvW9X:
+        Hq6RAgcMG5aR:
             server_name: progress.dev
             www_root: /var/www/progress/web
             listen_port: '80'
@@ -189,23 +189,24 @@ drush:
 ruby:
     install: '1'
     versions:
-        Y5A3Ij8yLZhR:
+        Ff1RoyBCl08u:
             version: ''
 nodejs:
-    install: '0'
+    install: '1'
     npm_packages: {  }
 python:
     install: '1'
     packages: {  }
     versions:
-        XFbvF6c1R715:
+        EpPzJMTk4px1:
             version: ''
 mysql:
     install: '1'
+    override_options: {  }
     root_password: root
     adminer: 0
     databases:
-        5NM0vLk5Tvkj:
+        yugK7Ge6mft0:
             grant:
                 - ALL
             name: cascade
@@ -213,7 +214,7 @@ mysql:
             user: cascade
             password: cascade
             sql_file: ''
-        7hOH2Fgcbyuk:
+        2Z68vglRmnmU:
             grant:
                 - ALL
             name: progress
@@ -221,7 +222,7 @@ mysql:
             user: progress
             password: progress
             sql_file: ''
-        8mi8FcmZGw4u:
+        OPFKupvJJoS5:
             grant:
                 - ALL
             name: marina
@@ -240,6 +241,7 @@ postgresql:
     adminer: 0
 mariadb:
     install: '0'
+    override_options: {  }
     root_password: '123'
     adminer: 0
     databases: {  }
@@ -248,7 +250,7 @@ sqlite:
     install: '0'
     adminer: 0
     databases:
-        HsTIohEU89VZ:
+        WpNlUfsS8eyl:
             name: ''
             owner: vagrant
             group: ''
