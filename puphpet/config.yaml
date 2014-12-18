@@ -10,7 +10,7 @@ vagrantfile-local:
         network:
             private_network: 192.168.56.101
             forwarded_port:
-                gA75BZzwkKES:
+                JPbEnEKe1Eay:
                     host: '5049'
                     guest: '22'
         post_up_message: ''
@@ -32,7 +32,9 @@ vagrantfile-local:
                     - '--hiera_config /vagrant/puphpet/puppet/hiera.yaml'
                     - '--parser future'
         synced_folder:
-            ELi1QbCA4Nky:
+            9ltdwEYTAVYl:
+                owner: ''
+                group: ''
                 source: /Users/jacob/Projects
                 target: /var/www
                 sync_type: nfs
@@ -69,7 +71,7 @@ firewall:
     install: '1'
     rules: null
 apache:
-    install: '0'
+    install: '1'
     settings:
         user: www-data
         group: www-data
@@ -80,11 +82,9 @@ apache:
     modules:
         - rewrite
     vhosts:
-        Axe3PgKFTLxw:
-            servername: awesome.dev
-            serveraliases:
-                - www.awesome.dev
-            docroot: /var/www/awesome
+        AMbmh0DJfnoT:
+            servername: progress.dev
+            docroot: /var/www/progress/web
             port: '80'
             setenv:
                 - 'APP_ENV dev'
@@ -100,15 +100,31 @@ apache:
             ssl_key: ''
             ssl_chain: ''
             ssl_certs_dir: ''
+        CaXjxxiHgmCs:
+            servername: cascade.dev
+            docroot: /var/www/cascade/web
+            port: '80'
+            options:
+                - Indexes
+                - FollowSymLinks
+                - MultiViews
+            engine: php
+            custom_fragment: ''
+            ssl_cert: ''
+            ssl_key: ''
+            ssl_chain: ''
+            ssl_certs_dir: ''
     mod_pagespeed: 0
 nginx:
-    install: '1'
+    install: 0
     settings:
         default_vhost: 1
         proxy_buffer_size: 128k
         proxy_buffers: '4 256k'
+    upstreams: {  }
     vhosts:
-        tIelkDXWTEaD:
+        pqJ0FY7zp59v:
+            proxy: ''
             server_name: cascade.dev
             www_root: /var/www/cascade/web
             listen_port: '80'
@@ -120,9 +136,11 @@ nginx:
             envvars:
                 - 'APP_ENV dev'
             engine: php
+            client_max_body_size: 1m
             ssl_cert: ''
             ssl_key: ''
-        Hq6RAgcMG5aR:
+        TX1hLGPUgVmG:
+            proxy: ''
             server_name: progress.dev
             www_root: /var/www/progress/web
             listen_port: '80'
@@ -132,6 +150,21 @@ nginx:
                 - index.htm
                 - index.php
             engine: php
+            client_max_body_size: 1m
+            ssl_cert: ''
+            ssl_key: ''
+        IgQe1Fsautzq:
+            proxy: ''
+            server_name: webgrind.dev
+            www_root: /var/www/webgrind
+            listen_port: '80'
+            location: \.php$
+            index_files:
+                - index.html
+                - index.htm
+                - index.php
+            engine: php
+            client_max_body_size: 1m
             ssl_cert: ''
             ssl_key: ''
 php:
@@ -151,6 +184,7 @@ php:
             - tidy
         pear: {  }
         pecl:
+            - dbase
             - mongo
             - redis
             - pecl_http
@@ -176,20 +210,27 @@ xdebug:
     install: '1'
     settings:
         xdebug.default_enable: '1'
+        xdebug.cli_color: '1'
+        xdebug.profiler_output_dir: /var/www/profiles
         xdebug.remote_autostart: '0'
         xdebug.remote_connect_back: '1'
         xdebug.remote_enable: '1'
         xdebug.remote_handler: dbgp
         xdebug.remote_port: '9000'
+        xdebug.profiler_enable_trigger: '1'
+        xdebug.remote_host: 192.168.56.1
 xhprof:
     install: '0'
+wpcli:
+    install: '0'
+    version: ''
 drush:
     install: '0'
     version: 6.3.0
 ruby:
     install: '1'
     versions:
-        Ff1RoyBCl08u:
+        3zpWdK9JTgbI:
             version: ''
 nodejs:
     install: '1'
@@ -198,7 +239,7 @@ python:
     install: '1'
     packages: {  }
     versions:
-        EpPzJMTk4px1:
+        O7vlr5RDBRaT:
             version: ''
 mysql:
     install: '1'
@@ -206,7 +247,7 @@ mysql:
     root_password: root
     adminer: 0
     databases:
-        yugK7Ge6mft0:
+        910x9bED0and:
             grant:
                 - ALL
             name: cascade
@@ -214,7 +255,7 @@ mysql:
             user: cascade
             password: cascade
             sql_file: ''
-        2Z68vglRmnmU:
+        ieIp2aeHmf0S:
             grant:
                 - ALL
             name: progress
@@ -222,7 +263,7 @@ mysql:
             user: progress
             password: progress
             sql_file: ''
-        OPFKupvJJoS5:
+        X0YSYRss8Aow:
             grant:
                 - ALL
             name: marina
@@ -250,7 +291,7 @@ sqlite:
     install: '0'
     adminer: 0
     databases:
-        WpNlUfsS8eyl:
+        Q0EZBrlfkhOD:
             name: ''
             owner: vagrant
             group: ''
@@ -261,7 +302,11 @@ mongodb:
     settings:
         auth: 1
         port: '27017'
-    databases: {  }
+    databases:
+        pavoBRV3odAA:
+            name: progress
+            user: progress
+            password: progress
 redis:
     install: '1'
     settings:
@@ -294,6 +339,11 @@ rabbitmq:
 elastic_search:
     install: '0'
     settings:
+        version: ''
         java_install: true
-        autoupgrade: true
+solr:
+    install: '0'
+    settings:
+        version: ''
+        port: ''
 
