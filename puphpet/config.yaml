@@ -10,9 +10,12 @@ vagrantfile-local:
         network:
             private_network: 192.168.56.101
             forwarded_port:
-                JPbEnEKe1Eay:
+                B0a5W3kYEipf:
                     host: '5049'
                     guest: '22'
+                ze5qAweyHCz9:
+                    host: '9001'
+                    guest: '9001'
         post_up_message: ''
         provider:
             virtualbox:
@@ -32,7 +35,7 @@ vagrantfile-local:
                     - '--hiera_config /vagrant/puphpet/puppet/hiera.yaml'
                     - '--parser future'
         synced_folder:
-            9ltdwEYTAVYl:
+            1OgzhKlj4Pvp:
                 owner: ''
                 group: ''
                 source: /Users/jacob/Projects
@@ -67,9 +70,28 @@ server:
         - vim-common
         - htop
         - git
+        - urw-font
+        - fontconfig
+        - 'freetype*'
+users_groups:
+    install: '1'
+    groups: {  }
+    users: {  }
+cron:
+    install: '1'
+    jobs: {  }
 firewall:
     install: '1'
-    rules: null
+    rules:
+        GCJrIimazSBq:
+            port:
+                - '80'
+                - '9000'
+                - '9001'
+                - '443'
+            priority: '100'
+            proto: tcp
+            action: accept
 apache:
     install: '1'
     settings:
@@ -82,32 +104,76 @@ apache:
     modules:
         - rewrite
     vhosts:
-        AMbmh0DJfnoT:
+        iguywk64tgze:
             servername: progress.dev
             docroot: /var/www/progress/web
             port: '80'
             setenv:
                 - 'APP_ENV dev'
-            override:
-                - All
-            options:
-                - Indexes
-                - FollowSymLinks
-                - MultiViews
+            directories:
+                o0soavpxl8qh:
+                    provider: directory
+                    path: /var/www/progress/web
+                    options:
+                        - Indexes
+                        - FollowSymlinks
+                        - MultiViews
+                    allow_override:
+                        - All
+                    require:
+                        - all
+                        - granted
+                    custom_fragment: ''
             engine: php
             custom_fragment: ''
             ssl_cert: ''
             ssl_key: ''
             ssl_chain: ''
             ssl_certs_dir: ''
-        CaXjxxiHgmCs:
+        xgtl2vvtte0i:
+            servername: adventure.dev
+            docroot: /var/www/adventure/web
+            port: '80'
+            setenv:
+                - 'APP_ENV dev'
+            directories:
+                46f1ixr4p76q:
+                    provider: directory
+                    path: /var/www/adventure/web
+                    options:
+                        - Indexes
+                        - FollowSymlinks
+                        - MultiViews
+                    allow_override:
+                        - All
+                    require:
+                        - all
+                        - granted
+                    custom_fragment: ''
+            engine: php
+            custom_fragment: ''
+            ssl_cert: ''
+            ssl_key: ''
+            ssl_chain: ''
+            ssl_certs_dir: ''
+        gba2cy3gmuka:
             servername: cascade.dev
             docroot: /var/www/cascade/web
             port: '80'
-            options:
-                - Indexes
-                - FollowSymLinks
-                - MultiViews
+            directories:
+                sxe9caf0neb2:
+                    provider: directory
+                    path: /var/www/cascade/web
+                    options:
+                        - Indexes
+                        - FollowSymlinks
+                        - MultiViews
+                    allow_override:
+                        - All
+                    require:
+                        - all
+                        - granted
+                    custom_fragment: ''
             engine: php
             custom_fragment: ''
             ssl_cert: ''
@@ -116,14 +182,14 @@ apache:
             ssl_certs_dir: ''
     mod_pagespeed: 0
 nginx:
-    install: 0
+    install: '0'
     settings:
         default_vhost: 1
         proxy_buffer_size: 128k
         proxy_buffers: '4 256k'
     upstreams: {  }
     vhosts:
-        pqJ0FY7zp59v:
+        hd6fvnfpldrz:
             proxy: ''
             server_name: cascade.dev
             www_root: /var/www/cascade/web
@@ -139,7 +205,7 @@ nginx:
             client_max_body_size: 1m
             ssl_cert: ''
             ssl_key: ''
-        TX1hLGPUgVmG:
+        za73mfb14c1r:
             proxy: ''
             server_name: progress.dev
             www_root: /var/www/progress/web
@@ -153,7 +219,7 @@ nginx:
             client_max_body_size: 1m
             ssl_cert: ''
             ssl_key: ''
-        IgQe1Fsautzq:
+        cpznak9gxyjz:
             proxy: ''
             server_name: webgrind.dev
             www_root: /var/www/webgrind
@@ -230,7 +296,7 @@ drush:
 ruby:
     install: '1'
     versions:
-        3zpWdK9JTgbI:
+        yx0uCQ4o9TVW:
             version: ''
 nodejs:
     install: '1'
@@ -239,7 +305,7 @@ python:
     install: '1'
     packages: {  }
     versions:
-        O7vlr5RDBRaT:
+        Hod4Ojtrfvh6:
             version: ''
 mysql:
     install: '1'
@@ -247,7 +313,7 @@ mysql:
     root_password: root
     adminer: 0
     databases:
-        910x9bED0and:
+        2bWn3lzCyicP:
             grant:
                 - ALL
             name: cascade
@@ -255,7 +321,7 @@ mysql:
             user: cascade
             password: cascade
             sql_file: ''
-        ieIp2aeHmf0S:
+        smjieIV2h4nY:
             grant:
                 - ALL
             name: progress
@@ -263,7 +329,7 @@ mysql:
             user: progress
             password: progress
             sql_file: ''
-        X0YSYRss8Aow:
+        9eArkni8mNId:
             grant:
                 - ALL
             name: marina
@@ -291,7 +357,7 @@ sqlite:
     install: '0'
     adminer: 0
     databases:
-        Q0EZBrlfkhOD:
+        C0fvIjfZWWpQ:
             name: ''
             owner: vagrant
             group: ''
@@ -303,7 +369,7 @@ mongodb:
         auth: 1
         port: '27017'
     databases:
-        pavoBRV3odAA:
+        OBT4azoS7OlH:
             name: progress
             user: progress
             password: progress

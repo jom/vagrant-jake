@@ -82,6 +82,9 @@ Vagrant.configure('2') do |config|
 
       if folder['sync_type'] == 'nfs'
         config.vm.synced_folder "#{folder['source']}", "#{folder['target']}", id: "#{i}", type: 'nfs'
+        if Vagrant.has_plugin?('vagrant-bindfs')
+          config.bindfs.bind_folder "#{folder['target']}", "/mnt/vagrant-#{i}"
+        end
       elsif folder['sync_type'] == 'smb'
         config.vm.synced_folder "#{folder['source']}", "#{folder['target']}", id: "#{i}", type: 'smb'
       elsif folder['sync_type'] == 'rsync'
@@ -226,11 +229,26 @@ Vagrant.configure('2') do |config|
   end
   config.vm.provision :shell, :path => 'puphpet/shell/important-notices.sh'
 
-  if File.file?("#{dir}/puphpet/files/dot/ssh/id_rsa")
+  customKey  = "#{dir}/files/dot/ssh/id_rsa"
+  vagrantKey = "#{dir}/.vagrant/machines/default/#{ENV['VAGRANT_DEFAULT_PROVIDER']}/private_key"
+
+  if File.file?(customKey)
     config.ssh.private_key_path = [
-      "#{dir}/puphpet/files/dot/ssh/id_rsa",
-      "#{dir}/puphpet/files/dot/ssh/insecure_private_key"
+      customKey,
+      "#{ENV['HOME']}/.vagrant.d/insecure_private_key"
     ]
+
+    if File.file?(vagrantKey) and ! FileUtils.compare_file(customKey, vagrantKey)
+      File.delete(vagrantKey)
+    end
+
+    if ! File.directory?(File.dirname(vagrantKey))
+      FileUtils.mkdir_p(File.dirname(vagrantKey))
+    end
+
+    if ! File.file?(vagrantKey)
+      FileUtils.cp(customKey, vagrantKey)
+    end
   end
 
   if !data['ssh']['host'].nil?
@@ -261,4 +279,5 @@ Vagrant.configure('2') do |config|
     config.vagrant.host = data['vagrant']['host'].gsub(':', '').intern
   end
 end
+
 
