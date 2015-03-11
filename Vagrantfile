@@ -81,9 +81,11 @@ Vagrant.configure('2') do |config|
       sync_group = !folder['sync_group'].nil? ? folder['sync_group'] : 'www-data'
 
       if folder['sync_type'] == 'nfs'
-        config.vm.synced_folder "#{folder['source']}", "#{folder['target']}", id: "#{i}", type: 'nfs'
         if Vagrant.has_plugin?('vagrant-bindfs')
-          config.bindfs.bind_folder "#{folder['target']}", "/mnt/vagrant-#{i}"
+          config.vm.synced_folder "#{folder['source']}", "/mnt/vagrant-#{i}", id: "#{i}", type: 'nfs'
+          config.bindfs.bind_folder "/mnt/vagrant-#{i}", "#{folder['target']}", user: sync_owner, group: sync_group
+        else
+          config.vm.synced_folder "#{folder['source']}", "#{folder['target']}", id: "#{i}", type: 'nfs'
         end
       elsif folder['sync_type'] == 'smb'
         config.vm.synced_folder "#{folder['source']}", "#{folder['target']}", id: "#{i}", type: 'smb'
@@ -105,6 +107,10 @@ Vagrant.configure('2') do |config|
   end
 
   config.vm.usable_port_range = (data['vm']['usable_port_range']['start'].to_i..data['vm']['usable_port_range']['stop'].to_i)
+
+  unless ENV.fetch('VAGRANT_DEFAULT_PROVIDER', '').strip.empty?
+    data['vm']['chosen_provider'] = ENV['VAGRANT_DEFAULT_PROVIDER'];
+  end
 
   if data['vm']['chosen_provider'].empty? || data['vm']['chosen_provider'] == 'virtualbox'
     ENV['VAGRANT_DEFAULT_PROVIDER'] = 'virtualbox'

@@ -10,10 +10,10 @@ vagrantfile-local:
         network:
             private_network: 192.168.56.101
             forwarded_port:
-                B0a5W3kYEipf:
+                0IHfegyDBuT2:
                     host: '5049'
                     guest: '22'
-                ze5qAweyHCz9:
+                Ir4hoK44C0zc:
                     host: '9001'
                     guest: '9001'
         post_up_message: ''
@@ -35,10 +35,10 @@ vagrantfile-local:
                     - '--hiera_config /vagrant/puphpet/puppet/hiera.yaml'
                     - '--parser future'
         synced_folder:
-            1OgzhKlj4Pvp:
+            Xod67o343nXB:
                 owner: ''
                 group: ''
-                source: /Users/jacob/Projects
+                source: /Users/jmorrison/Projects
                 target: /var/www
                 sync_type: nfs
                 rsync:
@@ -70,9 +70,6 @@ server:
         - vim-common
         - htop
         - git
-        - urw-font
-        - fontconfig
-        - 'freetype*'
 users_groups:
     install: '1'
     groups: {  }
@@ -83,7 +80,7 @@ cron:
 firewall:
     install: '1'
     rules:
-        GCJrIimazSBq:
+        0qudKxWu3mOw:
             port:
                 - '80'
                 - '9000'
@@ -104,14 +101,14 @@ apache:
     modules:
         - rewrite
     vhosts:
-        iguywk64tgze:
+        iktxbu4ixu1s:
             servername: progress.dev
             docroot: /var/www/progress/web
             port: '80'
             setenv:
                 - 'APP_ENV dev'
             directories:
-                o0soavpxl8qh:
+                8yxsbpivhihd:
                     provider: directory
                     path: /var/www/progress/web
                     options:
@@ -130,16 +127,14 @@ apache:
             ssl_key: ''
             ssl_chain: ''
             ssl_certs_dir: ''
-        xgtl2vvtte0i:
-            servername: adventure.dev
-            docroot: /var/www/adventure/web
+        mpc0s0kjzbsn:
+            servername: cascade.dev
+            docroot: /var/www/cascade/web
             port: '80'
-            setenv:
-                - 'APP_ENV dev'
             directories:
-                46f1ixr4p76q:
+                yoirbfj4vh3w:
                     provider: directory
-                    path: /var/www/adventure/web
+                    path: /var/www/cascade/web
                     options:
                         - Indexes
                         - FollowSymlinks
@@ -156,14 +151,14 @@ apache:
             ssl_key: ''
             ssl_chain: ''
             ssl_certs_dir: ''
-        gba2cy3gmuka:
-            servername: cascade.dev
-            docroot: /var/www/cascade/web
+        2clnnlutkcou:
+            servername: webgrind.dev
+            docroot: /var/www/webgrind
             port: '80'
             directories:
-                sxe9caf0neb2:
+                kxa8r6xkrkvw:
                     provider: directory
-                    path: /var/www/cascade/web
+                    path: ''
                     options:
                         - Indexes
                         - FollowSymlinks
@@ -189,7 +184,7 @@ nginx:
         proxy_buffers: '4 256k'
     upstreams: {  }
     vhosts:
-        hd6fvnfpldrz:
+        xwvrp60j0e6j:
             proxy: ''
             server_name: cascade.dev
             www_root: /var/www/cascade/web
@@ -205,7 +200,7 @@ nginx:
             client_max_body_size: 1m
             ssl_cert: ''
             ssl_key: ''
-        za73mfb14c1r:
+        ijrslcet1pze:
             proxy: ''
             server_name: progress.dev
             www_root: /var/www/progress/web
@@ -219,7 +214,7 @@ nginx:
             client_max_body_size: 1m
             ssl_cert: ''
             ssl_key: ''
-        cpznak9gxyjz:
+        rjvx7b9gs6jl:
             proxy: ''
             server_name: webgrind.dev
             www_root: /var/www/webgrind
@@ -296,7 +291,7 @@ drush:
 ruby:
     install: '1'
     versions:
-        yx0uCQ4o9TVW:
+        zZxiU5jESZjD:
             version: ''
 nodejs:
     install: '1'
@@ -305,7 +300,7 @@ python:
     install: '1'
     packages: {  }
     versions:
-        Hod4Ojtrfvh6:
+        8HqYauDE00rh:
             version: ''
 mysql:
     install: '1'
@@ -313,7 +308,7 @@ mysql:
     root_password: root
     adminer: 0
     databases:
-        2bWn3lzCyicP:
+        QHoPbsWFIN5G:
             grant:
                 - ALL
             name: cascade
@@ -321,7 +316,7 @@ mysql:
             user: cascade
             password: cascade
             sql_file: ''
-        smjieIV2h4nY:
+        1llIK5chxjHo:
             grant:
                 - ALL
             name: progress
@@ -329,7 +324,7 @@ mysql:
             user: progress
             password: progress
             sql_file: ''
-        9eArkni8mNId:
+        84fDkejJCOQj:
             grant:
                 - ALL
             name: marina
@@ -357,19 +352,19 @@ sqlite:
     install: '0'
     adminer: 0
     databases:
-        C0fvIjfZWWpQ:
+        dA5ZpVBCODa2:
             name: ''
             owner: vagrant
             group: ''
             mode: '755'
             sql_file: ''
 mongodb:
-    install: '1'
+    install: '0'
     settings:
         auth: 1
         port: '27017'
     databases:
-        OBT4azoS7OlH:
+        n3JAjtO2Ah3p:
             name: progress
             user: progress
             password: progress
